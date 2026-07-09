@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="50%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="moGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0066ff"/>
+      <stop offset="50%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#0066ff"/>
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="50%" stop-color="rgba(0,102,255,0.3)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(0,102,255,0.08)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+  <!-- Grid lines -->
+  <g opacity="0.03">
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#0066ff" stroke-width="0.5" transform="translate(160,0)"/>
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#0066ff" stroke-width="0.5" transform="translate(320,0)"/>
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#0066ff" stroke-width="0.5" transform="translate(480,0)"/>
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#0066ff" stroke-width="0.5" transform="translate(640,0)"/>
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#0066ff" stroke-width="0.5" transform="translate(800,0)"/>
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#0066ff" stroke-width="0.5" transform="translate(960,0)"/>
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#0066ff" stroke-width="0.5" transform="translate(1120,0)"/>
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#0066ff" stroke-width="0.5" transform="translate(1280,0)"/>
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#0066ff" stroke-width="0.5" transform="translate(1440,0)"/>
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#0066ff" stroke-width="0.5" transform="translate(1600,0)"/>
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#0066ff" stroke-width="0.5" transform="translate(1760,0)"/>
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#0066ff" stroke-width="0.5" transform="translate(1920,0)"/>
+    <line x1="0" y1="0" x2="1920" y2="0" stroke="#0066ff" stroke-width="0.5" transform="translate(0,90)"/>
+    <line x1="0" y1="0" x2="1920" y2="0" stroke="#0066ff" stroke-width="0.5" transform="translate(0,180)"/>
+    <line x1="0" y1="0" x2="1920" y2="0" stroke="#0066ff" stroke-width="0.5" transform="translate(0,270)"/>
+    <line x1="0" y1="0" x2="1920" y2="0" stroke="#0066ff" stroke-width="0.5" transform="translate(0,360)"/>
+    <line x1="0" y1="0" x2="1920" y2="0" stroke="#0066ff" stroke-width="0.5" transform="translate(0,450)"/>
+    <line x1="0" y1="0" x2="1920" y2="0" stroke="#0066ff" stroke-width="0.5" transform="translate(0,540)"/>
+    <line x1="0" y1="0" x2="1920" y2="0" stroke="#0066ff" stroke-width="0.5" transform="translate(0,630)"/>
+    <line x1="0" y1="0" x2="1920" y2="0" stroke="#0066ff" stroke-width="0.5" transform="translate(0,720)"/>
+    <line x1="0" y1="0" x2="1920" y2="0" stroke="#0066ff" stroke-width="0.5" transform="translate(0,810)"/>
+    <line x1="0" y1="0" x2="1920" y2="0" stroke="#0066ff" stroke-width="0.5" transform="translate(0,900)"/>
+    <line x1="0" y1="0" x2="1920" y2="0" stroke="#0066ff" stroke-width="0.5" transform="translate(0,990)"/>
+  </g>
+
+  <!-- Center glow -->
+  <ellipse cx="960" cy="540" rx="600" ry="500" fill="url(#glowGrad)"/>
+
+  <!-- Background gears -->
+  <g opacity="0.15">
+    <!-- Gear 1 - large top-left -->
+    <circle cx="220" cy="200" r="90" fill="none" stroke="#0066ff" stroke-width="1"/>
+    <circle cx="220" cy="200" r="75" fill="none" stroke="#0066ff" stroke-width="0.5" stroke-dasharray="8 6"/>
+    <circle cx="220" cy="200" r="30" fill="none" stroke="#0066ff" stroke-width="1"/>
+    <line x1="220" y1="110" x2="220" y2="130" stroke="#0066ff" stroke-width="2"/>
+    <line x1="220" y1="270" x2="220" y2="290" stroke="#0066ff" stroke-width="2"/>
+    <line x1="130" y1="200" x2="150" y2="200" stroke="#0066ff" stroke-width="2"/>
+    <line x1="290" y1="200" x2="310" y2="200" stroke="#0066ff" stroke-width="2"/>
+    <line x1="156" y1="136" x2="170" y2="150" stroke="#0066ff" stroke-width="2"/>
+    <line x1="270" y1="250" x2="284" y2="264" stroke="#0066ff" stroke-width="2"/>
+    <line x1="156" y1="264" x2="170" y2="250" stroke="#0066ff" stroke-width="2"/>
+    <line x1="270" y1="136" x2="284" y2="150" stroke="#0066ff" stroke-width="2"/>
+
+    <!-- Gear 2 - medium bottom-left -->
+    <circle cx="180" cy="780" r="65" fill="none" stroke="#0066ff" stroke-width="1"/>
+    <circle cx="180" cy="780" r="52" fill="none" stroke="#0066ff" stroke-width="0.5" stroke-dasharray="6 5"/>
+    <circle cx="180" cy="780" r="22" fill="none" stroke="#0066ff" stroke-width="0.8"/>
+    <line x1="180" y1="715" x2="180" y2="730" stroke="#0066ff" stroke-width="1.5"/>
+    <line x1="180" y1="830" x2="180" y2="845" stroke="#0066ff" stroke-width="1.5"/>
+    <line x1="115" y1="780" x2="130" y2="780" stroke="#0066ff" stroke-width="1.5"/>
+    <line x1="230" y1="780" x2="245" y2="780" stroke="#0066ff" stroke-width="1.5"/>
+    <line x1="135" y1="735" x2="145" y2="745" stroke="#0066ff" stroke-width="1.5"/>
+    <line x1="215" y1="815" x2="225" y2="825" stroke="#0066ff" stroke-width="1.5"/>
+
+    <!-- Gear 3 - medium top-right -->
+    <circle cx="1700" cy="280" r="70" fill="none" stroke="#0066ff" stroke-width="1"/>
+    <circle cx="1700" cy="280" r="55" fill="none" stroke="#0066ff" stroke-width="0.5" stroke-dasharray="7 5"/>
+    <circle cx="1700" cy="280" r="24" fill="none" stroke="#0066ff" stroke-width="0.8"/>
+    <line x1="1700" y1="210" x2="1700" y2="228" stroke="#0066ff" stroke-width="1.5"/>
+    <line x1="1700" y1="332" x2="1700" y2="350" stroke="#0066ff" stroke-width="1.5"/>
+    <line x1="1630" y1="280" x2="1648" y2="280" stroke="#0066ff" stroke-width="1.5"/>
+    <line x1="1752" y1="280" x2="1770" y2="280" stroke="#0066ff" stroke-width="1.5"/>
+
+    <!-- Gear 4 - small bottom-right -->
+    <circle cx="1740" cy="850" r="50" fill="none" stroke="#0066ff" stroke-width="0.8"/>
+    <circle cx="1740" cy="850" r="38" fill="none" stroke="#0066ff" stroke-width="0.4" stroke-dasharray="5 4"/>
+    <circle cx="1740" cy="850" r="16" fill="none" stroke="#0066ff" stroke-width="0.6"/>
+    <line x1="1740" y1="800" x2="1740" y2="812" stroke="#0066ff" stroke-width="1.2"/>
+    <line x1="1740" y1="888" x2="1740" y2="900" stroke="#0066ff" stroke-width="1.2"/>
+    <line x1="1690" y1="850" x2="1702" y2="850" stroke="#0066ff" stroke-width="1.2"/>
+    <line x1="1778" y1="850" x2="1790" y2="850" stroke="#0066ff" stroke-width="1.2"/>
+  </g>
+
+  <!-- Top accent line -->
+  <line x1="260" y1="120" x2="1660" y2="120" stroke="url(#lineGrad)" stroke-width="1"/>
+
+  <!-- Top text: 这次是两个行业的碰撞 -->
+  <text x="960" y="170" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="36" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="8">
+    这次是<tspan fill="#0066ff" font-weight="900">两个行业</tspan>的碰撞
+  </text>
+
+  <!-- MO - Main letters -->
+  <g filter="url(#glow)">
+    <text x="960" y="460" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="300" font-weight="700" fill="url(#moGrad)" text-anchor="middle" dominant-baseline="central" letter-spacing="28">M</text>
+    <text x="960" y="660" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="300" font-weight="100" fill="#fff" text-anchor="middle" dominant-baseline="central" letter-spacing="28" opacity="0.12">O</text>
+  </g>
+
+  <!-- O outline rings -->
+  <ellipse cx="960" cy="660" rx="130" ry="130" fill="none" stroke="#0066ff" stroke-width="1" opacity="0.06"/>
+  <ellipse cx="960" cy="660" rx="155" ry="155" fill="none" stroke="#0066ff" stroke-width="0.5" opacity="0.04"/>
+
+  <!-- Tagline: MECHANICAL · AI -->
+  <text x="960" y="830" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="20" font-weight="300" fill="#888" text-anchor="middle" letter-spacing="14">
+    <tspan fill="#0066ff" font-weight="700">MECHANICAL</tspan>
+    <tspan fill="#555"> · </tspan>
+    <tspan fill="#00d4ff" font-weight="700">AI</tspan>
+  </text>
+
+  <!-- Decorative line -->
+  <line x1="560" y1="865" x2="1360" y2="865" stroke="url(#lineGrad)" stroke-width="1"/>
+
+  <!-- Subtitle -->
+  <text x="960" y="920" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="300" fill="#666" text-anchor="middle" letter-spacing="6">
+    致力打造专属<tspan fill="#0066ff" font-weight="600"> AI Agent</tspan>，让机械赋能成就未来
+  </text>
+
+  <!-- Small text: 由MO工作室出品 -->
+  <text x="960" y="975" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="12" font-weight="300" fill="#444" text-anchor="middle" letter-spacing="4">
+    由<tspan fill="#0066ff"> MO </tspan>工作室出品
+  </text>
+
+  <!-- Corner accents -->
+  <rect x="60" y="40" width="30" height="30" fill="none" stroke="#0066ff" stroke-width="1" opacity="0.12"/>
+  <line x1="75" y1="40" x2="75" y2="70" stroke="#0066ff" stroke-width="1" opacity="0.12"/>
+  <line x1="60" y1="55" x2="90" y2="55" stroke="#0066ff" stroke-width="1" opacity="0.12"/>
+  <rect x="1830" y="40" width="30" height="30" fill="none" stroke="#0066ff" stroke-width="1" opacity="0.12"/>
+  <line x1="1845" y1="40" x2="1845" y2="70" stroke="#0066ff" stroke-width="1" opacity="0.12"/>
+  <line x1="1830" y1="55" x2="1860" y2="55" stroke="#0066ff" stroke-width="1" opacity="0.12"/>
+  <rect x="60" y="1010" width="30" height="30" fill="none" stroke="#0066ff" stroke-width="1" opacity="0.12"/>
+  <line x1="75" y1="1010" x2="75" y2="1040" stroke="#0066ff" stroke-width="1" opacity="0.12"/>
+  <line x1="60" y1="1025" x2="90" y2="1025" stroke="#0066ff" stroke-width="1" opacity="0.12"/>
+  <rect x="1830" y="1010" width="30" height="30" fill="none" stroke="#0066ff" stroke-width="1" opacity="0.12"/>
+  <line x1="1845" y1="1010" x2="1845" y2="1040" stroke="#0066ff" stroke-width="1" opacity="0.12"/>
+  <line x1="1830" y1="1025" x2="1860" y2="1025" stroke="#0066ff" stroke-width="1" opacity="0.12"/>
+</svg>
