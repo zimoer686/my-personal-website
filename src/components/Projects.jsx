@@ -1,181 +1,88 @@
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
-
-const GithubIcon = ({ size = 18 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-);
-
-const projects = [
-  {
-    title: 'AI 赋能机械臂',
-    subtitle: '智能控制 · 深度学习',
-    desc: '基于深度学习的机械臂智能控制系统，实现视觉识别、自主抓取与路径规划，将 AI 能力注入传统工业机械臂。',
-    status: '开发中',
-    tags: ['Python', 'TensorFlow', 'ROS', 'SolidWorks'],
-    color: '#0066ff',
-    image: null,
-    gradient: 'linear-gradient(135deg, #0066ff 0%, #00d4ff 100%)',
-  },
-  {
-    title: '智能 CNC 监控系统',
-    subtitle: '工业物联网 · 实时监测',
-    desc: '实时采集 CNC 加工数据，通过 AI 模型预测刀具磨损与加工质量，实现预测性维护，减少停机时间。',
-    status: '规划中',
-    tags: ['IoT', 'ML', 'CNC', 'Catia'],
-    color: '#00d4ff',
-    image: null,
-    gradient: 'linear-gradient(135deg, #00d4ff 0%, #0066ff 100%)',
-  },
-  {
-    title: '机械设计自动化平台',
-    subtitle: '参数化设计 · AI 生成',
-    desc: '利用 AI Agent 自动生成机械零件三维模型，输入参数即可输出多版本设计方案，大幅缩短设计周期。',
-    status: '构思中',
-    tags: ['AutoCAD', 'SolidWorks', 'AI', 'API'],
-    color: '#3399ff',
-    image: null,
-    gradient: 'linear-gradient(135deg, #3399ff 0%, #0066ff 100%)',
-  },
-];
+import { useLanguage } from '../context/LanguageContext';
+import { t } from '../context/translations';
+import BlurText from './BlurText';
+import BorderGlow from './BorderGlow';
 
 export default function Projects() {
+  const { lang } = useLanguage();
+
+  const projects = [
+    {
+      title: t.work.items[0].title[lang],
+      subtitle: t.work.items[0].subtitle[lang],
+      desc: t.work.items[0].desc[lang],
+      tags: ['Python', 'TensorFlow', 'ROS', 'SolidWorks'],
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=85',
+    },
+    {
+      title: t.work.items[1].title[lang],
+      subtitle: t.work.items[1].subtitle[lang],
+      desc: t.work.items[1].desc[lang],
+      tags: ['IoT', 'ML', 'CNC', 'Catia'],
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=85',
+    },
+    {
+      title: t.work.items[2].title[lang],
+      subtitle: t.work.items[2].subtitle[lang],
+      desc: t.work.items[2].desc[lang],
+      tags: ['AutoCAD', 'SolidWorks', 'AI', 'API'],
+      image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=85',
+    },
+  ];
+
   return (
-    <section id="projects" className="section">
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="section-title">精选项目</h2>
-        <p className="section-subtitle">用 AI 重新定义机械工程的边界，每个项目都是未来的种子</p>
+    <section id="projects" style={{ padding: '140px 24px', maxWidth: 1200, margin: '0 auto' }}>
+      <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6 }}>
+        <p style={{ fontSize: '0.7rem', letterSpacing: '4px', color: '#555', marginBottom: 8 }}>{t.work.label[lang]}</p>
+        <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', fontWeight: 600, letterSpacing: '-1px' }}>
+          <BlurText text={t.work.heading[lang]} delay={60} as="span" />
+        </h2>
       </motion.div>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: 30,
-        marginTop: 60,
-      }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 60 }}>
         {projects.map((project, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.6, delay: 0.1 * i }}
-            whileHover={{ y: -8 }}
-            className="glass"
-            style={{
-              overflow: 'hidden',
-              cursor: 'pointer',
-              position: 'relative',
-            }}
-          >
-            <div style={{
-              height: 240,
-              background: project.gradient,
-              position: 'relative',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              overflow: 'hidden',
-            }}>
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: `
-                  radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)
-                `,
-              }} />
-              <div style={{
-                fontSize: '3rem', fontWeight: 900, color: 'rgba(255,255,255,0.15)',
-                letterSpacing: 4, position: 'relative', zIndex: 1,
-              }}>
-                {String(i + 1).padStart(2, '0')}
+          <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={{ duration: 0.5, delay: 0.05 * i }}>
+            <BorderGlow backgroundColor="#111" borderRadius={16} glowColor="215 80 60" glowIntensity={0.8} colors={['#0066ff', '#00d4ff', '#3399ff']} glowRadius={30} edgeSensitivity={25} coneSpread={20}>
+              <div className="project-card-grid" style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: 32, cursor: 'pointer' }}>
+                <div className="project-card-image" style={{ height: 200, overflow: 'hidden' }}>
+                  <img src={project.image} alt={project.title} loading="lazy"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }}
+                    onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
+                    onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+                  />
+                </div>
+                <div className="project-card-content" style={{ padding: '24px 24px 24px 0', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div style={{ fontSize: '0.7rem', color: '#555', letterSpacing: '2px', marginBottom: 8 }}>{project.subtitle}</div>
+                  <h3 style={{ fontSize: '1.3rem', fontWeight: 600, color: '#fff', marginBottom: 12 }}>{project.title}</h3>
+                  <p style={{ fontSize: '0.85rem', color: '#666', lineHeight: 1.7, marginBottom: 16, maxWidth: 500 }}>{project.desc}</p>
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                    {project.tags.map((tag, j) => (
+                      <span key={j} style={{ padding: '3px 10px', borderRadius: 4, background: '#1a1a1a', fontSize: '0.7rem', color: '#555', fontFamily: "'JetBrains Mono', monospace" }}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <div style={{
-                position: 'absolute', top: 16, right: 16,
-                padding: '4px 14px',
-                borderRadius: 100,
-                background: 'var(--bg-card)',
-                fontSize: '0.75rem', fontWeight: 600,
-                color: project.color,
-              }}>
-                {project.status}
-              </div>
-            </div>
-
-            <div style={{ padding: 28 }}>
-              <div style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 600, marginBottom: 8 }}>
-                {project.subtitle}
-              </div>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 12 }}>
-                {project.title}
-              </h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 20 }}>
-                {project.desc}
-              </p>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                {project.tags.map((tag, j) => (
-                  <span key={j} style={{
-                    padding: '4px 12px', borderRadius: 6,
-                    background: 'var(--code-bg)', fontSize: '0.8rem',
-                    color: 'var(--text-secondary)',
-                    fontFamily: "'JetBrains Mono', monospace",
-                  }}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 1 }}
-              style={{
-                position: 'absolute', inset: 0,
-                background: 'rgba(0,0,0,0.5)',
-                backdropFilter: 'blur(4px)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                gap: 20, opacity: 0, pointerEvents: 'none',
-              }}
-            >
-              <div style={{
-                color: '#fff', display: 'flex', alignItems: 'center', gap: 8,
-                fontSize: '0.95rem', fontWeight: 600,
-              }}>
-                <ExternalLink size={18} /> 查看详情
-              </div>
-            </motion.div>
+            </BorderGlow>
           </motion.div>
         ))}
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        style={{ textAlign: 'center', marginTop: 48 }}
-      >
-        <a
-          href="https://github.com/zimoer686"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: '14px 32px', borderRadius: 12,
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-color)',
-            color: 'var(--text-primary)',
-            textDecoration: 'none', fontSize: '0.95rem', fontWeight: 500,
-          }}
-        >
-          <GithubIcon size={18} /> 查看 GitHub 主页
-        </a>
-      </motion.div>
+      <style>{`
+        .project-card-grid {
+          grid-template-columns: 280px 1fr;
+        }
+        @media (max-width: 768px) {
+          .project-card-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .project-card-image {
+            height: 200px !important;
+          }
+          .project-card-content {
+            padding: 0 20px 20px 20px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

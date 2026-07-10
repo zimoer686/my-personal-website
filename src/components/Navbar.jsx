@@ -1,185 +1,133 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import GooeyNav from './GooeyNav';
+import { useLanguage } from '../context/LanguageContext';
 
-const navLinks = [
-  { id: 'hero', label: '首页' },
-  { id: 'about', label: '关于' },
-  { id: 'projects', label: '项目' },
-  { id: 'skills', label: '优势' },
-  { id: 'contact', label: '联系' },
+const navItems = [
+  { label: 'Home', zh: '首页', id: 'hero' },
+  { label: 'About', zh: '关于', id: 'about' },
+  { label: 'Work', zh: '项目', id: 'projects' },
+  { label: 'Skills', zh: '技能', id: 'skills' },
+  { label: 'Contact', zh: '联系', id: 'contact' },
 ];
 
-export default function Navbar({ theme, toggleTheme }) {
+export default function Navbar() {
+  const { lang, toggleLang } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 50);
-
-      const sections = navLinks.map(l => document.getElementById(l.id));
-      const scrollPos = window.scrollY + 120;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        if (sections[i] && sections[i].offsetTop <= scrollPos) {
-          setActiveSection(navLinks[i].id);
-          break;
-        }
-      }
-    };
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const scrollTo = (id) => {
-    setMobileOpen(false);
+    setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleNavClick = (item) => {
+    scrollTo(item.id);
+  };
+
+  const gooeyItems = navItems.map(item => ({
+    label: item.label,
+    onClick: () => scrollTo(item.id),
+  }));
+
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-        padding: scrolled ? '12px 60px' : '20px 60px',
-        background: scrolled ? 'var(--nav-bg)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? '1px solid var(--border-color)' : 'none',
+    <>
+      <nav style={{
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+        padding: scrolled ? '16px 48px' : '20px 48px',
+        background: scrolled ? 'rgba(10,10,10,0.9)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(12px)' : 'none',
         transition: 'all 0.3s ease',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        maxWidth: '1700px',
-        margin: '0 auto',
-        width: '100%',
-      }}
-    >
-      {/* Logo */}
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        onClick={() => scrollTo('hero')}
-        style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px' }}
-      >
-        <div style={{
-          width: 36, height: 36, borderRadius: 10,
-          background: 'var(--gradient-1)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontWeight: 800, fontSize: '1.1rem', color: '#fff',
-          boxShadow: '0 0 20px var(--primary-glow)',
-        }}>
-          MO
-        </div>
-        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text-primary)' }}>zimoer</span>
-      </motion.div>
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        maxWidth: 1200, margin: '0 auto',
+      }}>
+        <button onClick={() => scrollTo('hero')} style={{
+          background: 'none', border: 'none', cursor: 'pointer',
+          color: '#fff', fontSize: '1rem', fontWeight: 600, letterSpacing: '3px',
+        }}>MO</button>
 
-      {/* Desktop Nav */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-        <div style={{ display: 'flex', gap: '28px', alignItems: 'center' }}>
-          {navLinks.map(link => (
-            <button
-              key={link.id}
-              onClick={() => scrollTo(link.id)}
-              style={{
-                background: 'none',
-                border: 'none',
-                fontSize: '0.9rem',
-                fontWeight: activeSection === link.id ? 600 : 400,
-                color: activeSection === link.id ? 'var(--primary)' : 'var(--text-secondary)',
-                position: 'relative',
-                padding: '4px 0',
-                letterSpacing: '0.5px',
-              }}
-            >
-              {link.label}
-              {activeSection === link.id && (
-                <motion.div
-                  layoutId="navIndicator"
-                  style={{
-                    position: 'absolute', bottom: -4, left: 0, right: 0,
-                    height: 2, background: 'var(--gradient-1)',
-                    borderRadius: 1,
-                  }}
-                />
-              )}
-            </button>
+        <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <button onClick={toggleLang} style={{
+            display: 'inline-flex', alignItems: 'center', gap: 4,
+            padding: '5px 12px', borderRadius: 6,
+            background: lang === 'zh' ? '#0066ff' : '#222',
+            border: 'none', color: '#fff', cursor: 'pointer',
+            fontSize: '0.7rem', fontWeight: 600, letterSpacing: '1px',
+            transition: 'background 0.2s',
+          }}>
+            {lang === 'en' ? '中' : 'EN'}
+          </button>
+
+          <div className="nav-desktop-gooey">
+            <GooeyNav
+              items={navItems.map(item => ({ label: item.label, href: `#${item.id}` }))}
+              initialActiveIndex={0}
+              particleCount={25}
+              animationTime={500}
+              timeVariance={400}
+              particleDistances={[70, 8]}
+              particleR={80}
+              colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+              onItemClick={(item) => scrollTo(navItems.find(i => i.label === item.label)?.id || 'hero')}
+            />
+          </div>
+
+          <button onClick={() => setMenuOpen(true)} className="hamburger" style={{
+            display: 'none', background: 'none', border: 'none', cursor: 'pointer',
+            flexDirection: 'column', gap: 5,
+          }}>
+            <div style={{ width: 20, height: 1.5, background: '#fff' }} />
+            <div style={{ width: 20, height: 1.5, background: '#fff' }} />
+          </button>
+        </div>
+
+        <style>{`
+          @media (max-width: 768px) {
+            .nav-desktop-gooey { display: none !important; }
+            .hamburger { display: flex !important; }
+            nav { padding: 16px 24px !important; }
+          }
+        `}</style>
+      </nav>
+
+      {/* Mobile fullscreen menu */}
+      <div style={{
+        position: 'fixed', inset: 0, zIndex: 200, background: '#000',
+        transition: 'opacity 0.3s, visibility 0.3s',
+        opacity: menuOpen ? 1 : 0, visibility: menuOpen ? 'visible' : 'hidden',
+        display: 'flex', flexDirection: 'column', padding: 24,
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span style={{ color: '#fff', fontWeight: 600, letterSpacing: '3px' }}>MO</span>
+          <button onClick={() => setMenuOpen(false)} style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer' }}><X size={24} /></button>
+        </div>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 40 }}>
+          {navItems.map((item, i) => (
+            <button key={item.id} onClick={() => scrollTo(item.id)} style={{
+              background: 'none', border: 'none', color: '#fff', cursor: 'pointer',
+              fontSize: '1.5rem', fontWeight: 500, letterSpacing: '2px',
+              transitionDelay: `${i * 60}ms`, transition: 'opacity 0.4s, transform 0.4s',
+              opacity: menuOpen ? 1 : 0, transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
+            }}>{item.label}</button>
           ))}
+          <button onClick={toggleLang} style={{
+            padding: '10px 24px', borderRadius: 8,
+            background: lang === 'zh' ? '#0066ff' : '#222',
+            border: 'none', color: '#fff', cursor: 'pointer',
+            fontSize: '0.8rem', fontWeight: 600, letterSpacing: '1px',
+            transitionDelay: `${navItems.length * 60 + 60}ms`, transition: 'opacity 0.4s, transform 0.4s',
+            opacity: menuOpen ? 1 : 0, transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
+          }}>
+            {lang === 'en' ? '中文' : 'English'}
+          </button>
         </div>
-
-        <button
-          onClick={toggleTheme}
-          style={{
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-color)',
-            borderRadius: 10,
-            width: 38, height: 38,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            cursor: 'pointer', color: 'var(--text-primary)',
-          }}
-        >
-          {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-        </button>
-
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          style={{
-            display: 'none',
-            background: 'none', border: 'none',
-            cursor: 'pointer', color: 'var(--text-primary)',
-          }}
-          className="mobile-menu-btn"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            style={{
-              position: 'fixed', top: 70, left: 0, right: 0,
-              background: 'var(--bg-card)',
-              backdropFilter: 'blur(20px)',
-              borderBottom: '1px solid var(--border-color)',
-              padding: '20px 24px',
-              display: 'flex', flexDirection: 'column', gap: '16px',
-            }}
-          >
-            {navLinks.map(link => (
-              <button
-                key={link.id}
-                onClick={() => scrollTo(link.id)}
-                style={{
-                  background: 'none', border: 'none',
-                  fontSize: '1rem', fontWeight: 500,
-                  color: 'var(--text-primary)',
-                  textAlign: 'left', padding: '8px 0',
-                }}
-              >
-                {link.label}
-              </button>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <style>{`
-        @media (max-width: 768px) {
-          nav > div > div:first-child { display: none !important; }
-          .mobile-menu-btn { display: flex !important; }
-        }
-      `}</style>
-    </motion.nav>
+    </>
   );
 }

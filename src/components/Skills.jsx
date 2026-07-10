@@ -1,149 +1,84 @@
 import { motion } from 'framer-motion';
-import { Cpu, Code2, Wrench, Brain, Cog, Gauge } from 'lucide-react';
-
-const skills = [
-  {
-    icon: <Cog size={28} />,
-    title: 'AutoCAD',
-    desc: '二维机械制图与设计，精准出图，标准化图纸管理',
-    level: 92,
-    tags: ['机械制图', '零件图', '装配图'],
-  },
-  {
-    icon: <Wrench size={28} />,
-    title: 'SolidWorks',
-    desc: '三维参数化建模、装配体设计与工程图生成',
-    level: 88,
-    tags: ['三维建模', '装配体', '钣金设计'],
-  },
-  {
-    icon: <Cpu size={28} />,
-    title: 'CATIA',
-    desc: '高级曲面设计与复杂机械系统三维建模',
-    level: 85,
-    tags: ['曲面设计', 'DMU', '逆向工程'],
-  },
-  {
-    icon: <Gauge size={28} />,
-    title: 'CNC 加工',
-    desc: '数控编程与加工工艺，从代码到实物的全流程',
-    level: 80,
-    tags: ['G代码', '工艺规划', '刀具路径'],
-  },
-  {
-    icon: <Brain size={28} />,
-    title: 'AI Agent',
-    desc: '打造专属 AI Agent，赋能机械行业智能化升级',
-    level: 75,
-    tags: ['LLM', 'Agent', '自动化'],
-  },
-  {
-    icon: <Code2 size={28} />,
-    title: 'Python / 编程',
-    desc: '用于机械自动化脚本、数据处理与 AI 模型集成',
-    level: 70,
-    tags: ['自动化脚本', '数据处理', 'API'],
-  },
-];
+import ChromaGrid from './ChromaGrid';
+import ShinyText from './ShinyText';
+import { useLanguage } from '../context/LanguageContext';
+import { t } from '../context/translations';
 
 export default function Skills() {
+  const { lang } = useLanguage();
+
+  const skillItems = [
+    {
+      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&q=85',
+      title: t.skills.names.autocad[lang],
+      subtitle: t.skills.descs.autocad[lang],
+      handle: '92%',
+      borderColor: '#0066ff',
+      gradient: 'linear-gradient(145deg, #0066ff, #0a0a0a)',
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=400&q=85',
+      title: t.skills.names.solidworks[lang],
+      subtitle: t.skills.descs.solidworks[lang],
+      handle: '88%',
+      borderColor: '#00d4ff',
+      gradient: 'linear-gradient(210deg, #00d4ff, #0a0a0a)',
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&q=85',
+      title: t.skills.names.catia[lang],
+      subtitle: t.skills.descs.catia[lang],
+      handle: '85%',
+      borderColor: '#3399ff',
+      gradient: 'linear-gradient(165deg, #3399ff, #0a0a0a)',
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=85',
+      title: t.skills.names.cnc[lang],
+      subtitle: t.skills.descs.cnc[lang],
+      handle: '80%',
+      borderColor: '#0044cc',
+      gradient: 'linear-gradient(195deg, #0044cc, #0a0a0a)',
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&q=85',
+      title: t.skills.names.aiml[lang],
+      subtitle: t.skills.descs.aiml[lang],
+      handle: '75%',
+      borderColor: '#7c3aed',
+      gradient: 'linear-gradient(225deg, #7c3aed, #0a0a0a)',
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&q=85',
+      title: t.skills.names.python[lang],
+      subtitle: t.skills.descs.python[lang],
+      handle: '70%',
+      borderColor: '#f59e0b',
+      gradient: 'linear-gradient(135deg, #f59e0b, #0a0a0a)',
+    },
+  ];
+
   return (
-    <section id="skills" className="section">
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="section-title">个人优势</h2>
-        <p className="section-subtitle">机械工程的硬核技能 × AI 时代的创新思维</p>
+    <section id="skills" style={{ padding: '140px 24px', maxWidth: 1200, margin: '0 auto' }}>
+      <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6 }}>
+        <p style={{ fontSize: '0.7rem', letterSpacing: '4px', color: '#555', marginBottom: 8 }}><ShinyText text={t.skills.label[lang]} speed={5} /></p>
+        <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', fontWeight: 600, letterSpacing: '-1px', marginBottom: 40 }}>{t.skills.heading[lang]}</h2>
       </motion.div>
-
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: 24,
-        marginTop: 60,
-      }}>
-        {skills.map((skill, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.5, delay: 0.08 * i }}
-            whileHover={{ y: -6, scale: 1.02 }}
-            className="glass"
-            style={{ padding: 32, position: 'relative', overflow: 'hidden' }}
-          >
-            {/* Top accent line */}
-            <div style={{
-              position: 'absolute', top: 0, left: 0, right: 0, height: 3,
-              background: 'var(--gradient-1)',
-            }} />
-
-            <div style={{
-              width: 52, height: 52, borderRadius: 14,
-              background: 'var(--gradient-1)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: '#fff', marginBottom: 20,
-              opacity: 0.9,
-            }}>
-              {skill.icon}
-            </div>
-
-            <h3 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: 8 }}>
-              {skill.title}
-            </h3>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 20 }}>
-              {skill.desc}
-            </p>
-
-            {/* Progress bar */}
-            <div style={{ marginBottom: 16 }}>
-              <div style={{
-                display: 'flex', justifyContent: 'space-between',
-                fontSize: '0.8rem', marginBottom: 6,
-              }}>
-                <span style={{ color: 'var(--text-muted)' }}>熟练度</span>
-                <span style={{ fontWeight: 600, color: 'var(--primary)' }}>{skill.level}%</span>
-              </div>
-              <div style={{
-                height: 4, borderRadius: 2,
-                background: 'var(--code-bg)',
-                overflow: 'hidden',
-              }}>
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.3 + 0.1 * i, ease: 'easeOut' }}
-                  style={{
-                    height: '100%', borderRadius: 2,
-                    background: 'var(--gradient-1)',
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Tags */}
-            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-              {skill.tags.map((tag, j) => (
-                <span key={j} style={{
-                  padding: '2px 10px',
-                  borderRadius: 6,
-                  background: 'var(--code-bg)',
-                  fontSize: '0.78rem',
-                  color: 'var(--text-muted)',
-                  fontFamily: "'JetBrains Mono', monospace",
-                }}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+      <div className="skills-grid-container" style={{ height: 520, position: 'relative' }}>
+        <ChromaGrid items={skillItems} radius={280} damping={0.45} fadeOut={0.6} ease="power3.out" columns={3} rows={2} />
       </div>
+      <style>{`
+        .skills-grid-container {
+          height: 520px;
+        }
+        @media (max-width: 768px) {
+          .skills-grid-container {
+            height: auto !important;
+            min-height: 400px;
+          }
+        }
+      `}</style>
     </section>
   );
 }
+
