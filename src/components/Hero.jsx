@@ -31,9 +31,9 @@ export default function Hero() {
         </div>
 
         <h1 style={{ marginBottom: 32 }}>
-          <div className="animate-fade-up-d1" style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)', fontWeight: 600, lineHeight: 0.95, color: '#fff', letterSpacing: '-3px' }}>{t.hero.line1[lang]}</div>
-          <div className="animate-fade-up-d2" style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)', fontWeight: 600, lineHeight: 0.95, color: '#333', letterSpacing: '-3px' }}>{t.hero.line2[lang]}</div>
-          <div className="animate-fade-up-d3" style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)', fontWeight: 600, lineHeight: 0.95, letterSpacing: '-3px' }}><ShinyText text={t.hero.line3[lang]} speed={3} /></div>
+          <div className="animate-fade-up-d1" style={{ fontSize: 'clamp(2rem, 6vw, 6rem)', fontWeight: 600, lineHeight: 0.95, color: '#fff', letterSpacing: '-2px' }}>{t.hero.line1[lang]}</div>
+          <div className="animate-fade-up-d2" style={{ fontSize: 'clamp(2rem, 6vw, 6rem)', fontWeight: 600, lineHeight: 0.95, color: '#333', letterSpacing: '-2px' }}>{t.hero.line2[lang]}</div>
+          <div className="animate-fade-up-d3" style={{ fontSize: 'clamp(2rem, 6vw, 6rem)', fontWeight: 600, lineHeight: 0.95, letterSpacing: '-2px' }}><ShinyText text={t.hero.line3[lang]} speed={3} /></div>
         </h1>
 
         <p className="animate-fade-up-d3" style={{ color: '#555', fontSize: '0.9rem', lineHeight: 1.8, maxWidth: 420, marginBottom: 48 }}>
@@ -70,6 +70,10 @@ export default function Hero() {
           .hero-mobile-bg { display: block !important; }
           section#hero { padding: 0 20px !important; }
           .hero-banner { padding: 84px 20px 0 !important; }
+        }
+        @media (max-width: 400px) {
+          section#hero h1 > div { font-size: clamp(1.6rem, 8vw, 2rem) !important; letter-spacing: -1px !important; }
+          section#hero .animate-fade-up-d1 > span { letter-spacing: 6px !important; }
         }
       `}</style>
     </section>
