@@ -229,3 +229,17 @@
     opacity: 0;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .gooey-nav-container .effect.filter::after {
+    animation: none !important;
+  }
+  .particle,
+  .point {
+    display: none !important;
+  }
+  .gooey-nav-container .effect.text.active {
+    color: white;
+    transition: none;
+  }
+}

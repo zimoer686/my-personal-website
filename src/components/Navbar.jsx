@@ -27,15 +27,6 @@ export default function Navbar() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleNavClick = (item) => {
-    scrollTo(item.id);
-  };
-
-  const gooeyItems = navItems.map(item => ({
-    label: item.label,
-    onClick: () => scrollTo(item.id),
-  }));
-
   return (
     <>
       <nav style={{

@@ -1,8 +1,12 @@
 import { motion } from 'framer-motion';
 import { Mail, ArrowUpRight } from 'lucide-react';
 import ShinyText from './ShinyText';
+import { useLanguage } from '../context/LanguageContext';
+import { t } from '../context/translations';
 
 export default function Contact() {
+  const { lang } = useLanguage();
+
   return (
     <section id="contact" style={{
       padding: '140px 24px', maxWidth: 1200, margin: '0 auto',
@@ -15,12 +19,12 @@ export default function Contact() {
         transition={{ duration: 0.6 }}
         style={{ textAlign: 'center' }}
       >
-        <p style={{ fontSize: '0.7rem', letterSpacing: '4px', color: '#555', marginBottom: 16 }}><ShinyText text="CONTACT" speed={5} /></p>
+        <p style={{ fontSize: '0.7rem', letterSpacing: '4px', color: '#555', marginBottom: 16 }}><ShinyText text={t.contact.label[lang]} speed={5} /></p>
         <h2 style={{
           fontSize: 'clamp(2rem, 5vw, 4rem)', fontWeight: 600,
           letterSpacing: '-2px', color: '#fff', marginBottom: 24,
         }}>
-          Let's build something.
+          {t.contact.heading[lang]}
         </h2>
 
         {/* Big CTA text */}
@@ -36,11 +40,11 @@ export default function Contact() {
             lineHeight: 1.3,
           }}
         >
-          如果你也有野心，请加入我们。
+          {t.contact.ctaBig[lang]}
         </motion.p>
 
         <p style={{ color: '#555', fontSize: '0.9rem', marginBottom: 40 }}>
-          Have a project in mind? Let's talk.
+          {t.contact.subtitle[lang]}
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: 16, flexWrap: 'wrap' }}>
@@ -66,7 +70,7 @@ export default function Contact() {
             onMouseEnter={e => e.target.style.opacity = '0.8'}
             onMouseLeave={e => e.target.style.opacity = '1'}
           >
-            <Mail size={14} /> Send Email <ArrowUpRight size={14} />
+            <Mail size={14} /> {t.contact.sendEmail[lang]} <ArrowUpRight size={14} />
           </a>
         </div>
 
